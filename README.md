@@ -14,23 +14,39 @@ A React-based UI that allows users to select a skip size from available options,
 
 ## 📁 Project Structure
 src/
+
 ├── api/
+
 │   └── skips.ts             # API calls for skip data
+
 ├── components/
+
 │   ├── SkipCard.tsx         # Reusable card component for each skip
+
 │   ├── FooterSummary.tsx    # Sticky footer showing selection summary
+
 │   ├── Stepper.tsx          # Progress indicator component
+
 │   ├── CardSkeleton.tsx     # Placeholder loading card
+
 │   ├── ErrorBoundray.tsx    # Placeholder loading card
+
 ├── interfaces/
+
 │   └── skipsInterface.ts    # TypeScript interfaces
+
 ├── layouts/
+
 │   └── MainLayout.tsx       # Shared layout component
+
 ├── pages/
+
 │   └── SkipSelectorPage.tsx # Main page implementation
+
 └── main.tsx
 
 💡 Features & Design Decisions
+
 ✅ 1. Separation of Concerns
 Data fetching is abstracted to api/skips.ts.
 
