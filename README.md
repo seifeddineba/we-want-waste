@@ -1,54 +1,73 @@
-# React + TypeScript + Vite
+# Skip Size Selector
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based UI that allows users to select a skip size from available options, view pricing (including VAT), and proceed with booking. Built as part of a challenge for **We Want Waste** using best practices in component architecture, TypeScript, and UI feedback.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔧 Tech Stack
+- **React 18+**
+- **TypeScript**
+- **Tailwind CSS**
+- **Axios**
+- **Vite**
+---
 
-## Expanding the ESLint configuration
+## 📁 Project Structure
+src/
+├── api/
+│   └── skips.ts             # API calls for skip data
+├── components/
+│   ├── SkipCard.tsx         # Reusable card component for each skip
+│   ├── FooterSummary.tsx    # Sticky footer showing selection summary
+│   ├── Stepper.tsx          # Progress indicator component
+│   ├── CardSkeleton.tsx     # Placeholder loading card
+│   ├── ErrorBoundray.tsx    # Placeholder loading card
+├── interfaces/
+│   └── skipsInterface.ts    # TypeScript interfaces
+├── layouts/
+│   └── MainLayout.tsx       # Shared layout component
+├── pages/
+│   └── SkipSelectorPage.tsx # Main page implementation
+└── main.tsx
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+💡 Features & Design Decisions
+✅ 1. Separation of Concerns
+Data fetching is abstracted to api/skips.ts.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+UI components are reusable and composable.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+State logic lives in the page file (SkipSelectorPage.tsx).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+✅ 2. Type Safety
+All API data is typed with interfaces in interfaces/skipsInterface.ts.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Props passed to components are strongly typed.
+
+✅ 3. User Feedback
+Loading state handled with skeleton placeholders.
+
+Disabled button and summary footer only appear when skip is selected.
+
+Stepper component provides visual navigation context.
+
+✅ 4. Memoization
+useMemo used to compute total price only when dependencies change.
+
+useCallback for stable reference functions (like step and skip selection).
+
+✅ 5. Error Handling
+All API calls wrapped with try-catch in fetchSkips().
+
+Errors are logged and can be extended to display user notifications.
+
+✅ 6. Accessibility & Responsiveness
+Fully responsive layout using Tailwind's grid and flex utilities.
+
+Icons and text are styled for readability.
+
+Make sure to set the environment variable:
+VITE_API_BASE_URL=https://app.wewantwaste.co.uk/api
+
+📦 Install & Run
+npm install
+npm run dev
