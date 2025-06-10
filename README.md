@@ -81,9 +81,6 @@ Fully responsive layout using Tailwind's grid and flex utilities.
 
 Icons and text are styled for readability.
 
-Make sure to set the environment variable:
-VITE_API_BASE_URL=https://app.wewantwaste.co.uk/api
-
 📦 Install & Run
 npm install
 npm run dev
