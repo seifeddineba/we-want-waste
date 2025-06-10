@@ -5,7 +5,7 @@ A React-based UI that allows users to select a skip size from available options,
 ---
 
 ## 🔧 Tech Stack
-- **React 18+**
+- **React 19+**
 - **TypeScript**
 - **Tailwind CSS**
 - **Axios**
